@@ -1,8 +1,5 @@
-# Toko Sayur Online
+<!-- Toko Sayur Online -->
 
-## Tampilan Homepage
-
-<img src="https://i.ibb.co/44TqPrJ/Annotation-2020-04-26-063829.png" alt="Homepage">
 
 * Input Login
 
