@@ -10,4 +10,4 @@
 
 * Notes
 
-File DB [assets/db/bakulsayur_db](./assets/db/bakulsayur_db)
+File DB [assets/db/bakulsayur_db.sql](./assets/db/bakulsayur_db.sql)
