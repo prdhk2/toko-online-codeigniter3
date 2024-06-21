@@ -64,7 +64,7 @@ class Product extends MY_Controller
             ];
             $this->product->insert($data);
             $this->session->set_flashdata('success', 'Product added successfully');
-            redirect('pages/admin/product/index');
+            redirect('product');
         }
     }
 
@@ -118,7 +118,7 @@ class Product extends MY_Controller
 
             $this->product->update($id, $data);
             $this->session->set_flashdata('success', 'Product updated successfully.');
-            redirect('pages/admin/product/index');
+            redirect('product');
         } else {
             $this->edit($id);
         }
@@ -128,7 +128,7 @@ class Product extends MY_Controller
     public function delete($id) {
         $this->product->delete($id);
         $this->session->set_flashdata('success', 'Product deleted successfully.');
-        redirect('pages/admin/product/index');
+        redirect('product');
     }
 
     private function do_upload() {
