@@ -13,7 +13,7 @@
                     <div class="card">
                         <div class="card-header">Detail Orders #<?= $order->invoice ?>
                             <div class="float-right">
-                                <?php $this->load->view('layouts/_status', ['status' => $order->status]) ?>
+                                <?php $this->load->view('layouts/frontend/_status', ['status' => $order->status]) ?>
                             </div>
                         </div>
                         <div class="card-body">

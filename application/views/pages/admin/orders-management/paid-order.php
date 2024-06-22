@@ -49,7 +49,7 @@
                                 <td><?= $row->address ; ?></td>
                                 <td><?= $row->status ; ?></td>
                                 <td>
-                                    <a href="" class="btn btn-primary"><i class="fas fa-eye"></i> Detail Order</a>
+                                <a href="<?= base_url('neworders/detail/' . $row->id); ?>" class="btn btn-primary"><i class="fas fa-eye"></i> Detail Order</a>
                                 </td>
                             </tr>
                             <?php endforeach ?>

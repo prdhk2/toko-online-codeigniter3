@@ -98,7 +98,7 @@
                             <td><?= $row->total; ?></td>
                             <td><?= $row->status; ?></td>
                             <td>
-                                <a href="" class="badge badge-info"><i class="fas fa-eye"></i> View</a>
+                                <a href="<?= base_url('neworders/detail/' . $row->id); ?>" class="badge badge-info"><i class="fas fa-eye"></i> View</a>
                             </td>
                             </tr>
                         <?php endforeach; ?>

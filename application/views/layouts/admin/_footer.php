@@ -54,7 +54,19 @@
             document.getElementById('productSlug').value = productSlug;
         });
     </script>
-
+    <script>
+        function printOrderDetails() {
+            var logo = '<div class="navbar-brand justify-content-center"><h2><p style="text-decoration: none; font-weight:700"><span class="logo-first">Bakul</span><span class="text-black">Sayur</span></p></h2></div>';
+            var thanks = '<div class="justify-content-center">Terimakasih Sudah Order :)</div>'
+            var orderDetails = document.getElementById("order-details").outerHTML;
+            var orderItems = document.getElementById("order-items").outerHTML;
+            var newWin = window.open("", "Print-Window");
+            newWin.document.open();
+            newWin.document.write('<html><head><title>Print Order</title><style>body{font-family: Arial, sans-serif; margin: 0; padding: 0; text-align: center;} table{width: 90%; margin: 10px auto; border-collapse: collapse;} th, td{border: 1px solid #ddd; padding: 8px; text-align: left;} th{text-align: center;} .text-center{text-align: center;} .print-container{width: 80%; margin: auto;} .navbar-brand{display: flex; justify-content: center; align-items: center; margin-bottom: 20px;}</style></head><body onload="window.print()"><div class="print-container">' + logo + orderDetails + '<br>' + orderItems + '<br>' + thanks +'</div></body></html>');
+            newWin.document.close();
+            setTimeout(function(){ newWin.close(); }, 10);
+        }
+    </script>
 </body>
 
 </html>

@@ -89,20 +89,20 @@ class Order extends MY_Controller
     /**
      * Mengubah status order
      */
-    public function update($id) {
-        if (!$_POST) {
-            $this->session->set_flashdata('error', 'Oops! Terjadi kesalahan');
-            redirect(base_url("order/detail/$id"));
-        }
+    // public function update($id) {
+    //     if (!$_POST) {
+    //         $this->session->set_flashdata('error', 'Oops! Terjadi kesalahan');
+    //         redirect(base_url("order/detail/$id"));
+    //     }
 
-        if ($this->order->where('id', $id)->update(['status' => $this->input->post('status')])) {
-            $this->session->set_flashdata('success', 'Data berhasil diperbarui');
-        } else {
-            $this->session->set_flashdata('error', 'Oops! Terjadi kesalahan');
-        }
+    //     if ($this->order->where('id', $id)->update(['status' => $this->input->post('status')])) {
+    //         $this->session->set_flashdata('success', 'Data berhasil diperbarui');
+    //     } else {
+    //         $this->session->set_flashdata('error', 'Oops! Terjadi kesalahan');
+    //     }
 
-        redirect(base_url("order/detail/$id"));
-    }
+    //     redirect(base_url("order/detail/$id"));
+    // }
 }
 
 /* End of file Order.php */

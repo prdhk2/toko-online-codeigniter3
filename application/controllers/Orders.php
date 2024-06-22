@@ -64,4 +64,38 @@ class Orders extends CI_Controller
         $this->load->view('pages/admin/orders-management/delivered-order', $data);
         $this->load->view('layouts/admin/_footer');
     }
+
+    public function detail($id) {
+        $data['title'] = 'Detail Order';
+        $data['breadcum'] = 'Orders';
+        $data['order'] = $this->orders->getOrderById($id);
+        $data['order_items'] = $this->orders->getOrderItemsByOrderId($id);
+        $data['order_confirm'] = $this->orders->getOrderConfirmByOrderId($id);
+
+        if (!$data['order']) {
+            $this->session->set_flashdata('error', 'Order not found.');
+            redirect('neworders/newOrders');
+        }
+
+        $this->load->view('layouts/admin/_header');
+        $this->load->view('layouts/admin/_sidebar');
+        $this->load->view('pages/admin/orders-management/detail', $data);
+        $this->load->view('layouts/admin/_footer');
+    }
+
+    public function confirm($id) {
+        $order_confirm = $this->orders->getOrderConfirmByOrderId($id);
+        if ($order_confirm) {
+            // Update order status to 'shipped' or 'delivered'
+            $this->db->set('status', 'paid');
+            $this->db->where('id', $id);
+            $this->db->update('orders');
+
+            $this->session->set_flashdata('success', 'Order confirmed successfully.');
+        } else {
+            $this->session->set_flashdata('error', 'Order confirmation not found.');
+        }
+        redirect('neworders/newOrders');
+    
+    }
 }
