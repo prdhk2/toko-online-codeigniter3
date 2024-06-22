@@ -13,8 +13,8 @@
 Halo, ini adalah project personal saya untuk bahan presentasi dalam matakuliah web programming 2.... 
 Silahkan download atau bisa clone repo saya, FREE. 
 
-* Fitur :
-  # User :
+# Fitur :
+  * User :
   	-	Register
   	-	Login
   	-	Add To Cart
@@ -23,7 +23,7 @@ Silahkan download atau bisa clone repo saya, FREE.
   	-	Order Status
   	-	Promo (on progress)
  
-  # Admin :
+  * Admin :
   	-	Login
   	-	Add Product
   	-	Add Category
@@ -36,7 +36,7 @@ Silahkan download atau bisa clone repo saya, FREE.
 * Kalian boleh memodifikasi sesuai kreatifitas kalian
 
 
- DILARANG KERAS UNTUK DIPERJUAL BELIKAN !!!
+ # DILARANG KERAS UNTUK DIPERJUAL BELIKAN !!!
 
 * Input Login
 
