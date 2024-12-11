@@ -83,7 +83,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card mb-3 category-card" style="border: none; border-radius: 1rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                        <div class="card-header" style="background-color: #dc3545; border-top-left-radius: 1rem; border-top-right-radius: 1rem;">
+                        <div class="card-header" style="background-color: #fff; border-top-left-radius: 1rem; border-top-right-radius: 1rem;">
                             Category
                         </div>
                         <ul class="list-group list-group-flush">

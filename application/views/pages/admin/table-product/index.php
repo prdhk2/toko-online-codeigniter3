@@ -55,15 +55,17 @@
                                     ?>
                                 </td>
                                 <td>
-                                    <a href="<?= base_url('product/detail/' . $row->id); ?>" class="btn btn-info btn-round">
-                                        <i class="fas fa-eye"></i> Detail
-                                    </a>
-                                    <a href="<?= base_url('admin/product/edit/' . $row->id); ?>" class="btn btn-warning">
-                                        <i class="fas fa-pencil-alt"></i> Edit
-                                    </a>
-                                    <a href="<?= base_url('admin/product/delete/' . $row->id); ?>" class="btn btn-primary" onclick="return confirm('Are you sure you want to delete this product?');">
-                                        <i class="fas fa-trash"></i> Delete
-                                    </a>
+                                    <div class="d-flex gap-2 justify-content-center align-items-center">
+                                        <a href="<?= base_url('product/detail/' . $row->id); ?>" class="btn btn-sm btn-info d-flex align-items-center">
+                                            <i class="fas fa-eye me-1"></i> Detail
+                                        </a>
+                                        <a href="<?= base_url('admin/product/edit/' . $row->id); ?>" class="btn btn-sm btn-warning d-flex align-items-center">
+                                            <i class="fas fa-pencil-alt me-1"></i> Edit
+                                        </a>
+                                        <a href="<?= base_url('admin/product/delete/' . $row->id); ?>" class="btn btn-sm btn-danger d-flex align-items-center" onclick="return confirm('Are you sure you want to delete this product?');">
+                                            <i class="fas fa-trash me-1"></i> Delete
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                             <?php endforeach ?>

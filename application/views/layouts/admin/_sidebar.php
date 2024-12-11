@@ -7,52 +7,52 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="pt-4">
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/dashboard'); ?>" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/dashboard'); ?>" aria-expanded="false"><i class="mdi mdi-view-dashboard" style="color: #5c90ff !important;"></i>
                             <span class="hide-menu">Dashboard</span></a>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/product/add'); ?>" aria-expanded="false"><i class="mdi mdi-view-list"></i>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/product/add'); ?>" aria-expanded="false"><i class="mdi mdi-view-list" style="color: #5c90ff !important;"></i>
                             <span class="hide-menu">Add Product</span></a>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/category/add'); ?>" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/category/add'); ?>" aria-expanded="false"><i class="mdi mdi-chart-bubble" style="color: #5c90ff !important;"></i>
                             <span class="hide-menu">Add Category</span></a>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/product/index'); ?>" aria-expanded="false"><i class="mdi mdi-table"></i>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/product/index'); ?>" aria-expanded="false"><i class="mdi mdi-table" style="color: #5c90ff !important;"></i>
                             <span class="hide-menu">Table Product</span></a>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/category/index'); ?>" aria-expanded="false"><i class="mdi mdi-table"></i>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/category/index'); ?>" aria-expanded="false"><i class="mdi mdi-table" style="color: #5c90ff !important;"></i>
                             <span class="hide-menu">Table Category</span></a>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-web"></i>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-web" style="color: #5c90ff !important;"></i>
                             <span class="hide-menu">Setting Website </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="<?= base_url('websetting/index'); ?>" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Edit Banner
+                                            class="mdi mdi-note-outline" style="color: #5c90ff !important;"></i><span class="hide-menu"> Edit Banner
                                         </span></a></li>
                                 <li class="sidebar-item"><a href="<?= base_url('admin/promo'); ?>" class="sidebar-link"><i
-                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Edit Promos
+                                            class="mdi mdi-note-plus" style="color: #5c90ff !important;"></i><span class="hide-menu"> Edit Promos
                                         </span></a></li>
                             </ul>
                         </li>
                         
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-shopping"></i><span
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-shopping" style="color: #5c90ff !important;"></i><span
                                     class="hide-menu">Orders </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="<?= base_url('neworders/newOrders'); ?>" class="sidebar-link">
-                                    <i class="mdi mdi-emoticon"></i><span class="hide-menu"> New Order </span></a>
+                                    <i class="mdi mdi-emoticon" style="color: #5c90ff !important;"></i><span class="hide-menu"> New Order </span></a>
                                 </li>
                                 <li class="sidebar-item"><a href="<?= base_url('neworders/paidOrders'); ?>" class="sidebar-link">
-                                    <i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> Paid Orders</span></a>
+                                    <i class="mdi mdi-emoticon-cool" style="color: #5c90ff !important;"></i><span class="hide-menu"> Paid Orders</span></a>
                                 </li>
                                 <li class="sidebar-item"><a href="#" class="sidebar-link">
-                                    <i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> Shipping</span></a>
+                                    <i class="mdi mdi-emoticon-cool" style="color: #5c90ff !important;"></i><span class="hide-menu"> Shipping</span></a>
                                 </li>
                                 <li class="sidebar-item"><a href="<?= base_url('neworders/deliveredOrders'); ?>" class="sidebar-link">
-                                    <i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> Shipped</span></a>
+                                    <i class="mdi mdi-emoticon-cool" style="color: #5c90ff !important;"></i><span class="hide-menu"> Shipped</span></a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(''); ?>" aria-expanded="false"><i class="mdi mdi-eye"></i>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(''); ?>" aria-expanded="false"><i class="mdi mdi-eye" style="color: #5c90ff !important;"></i>
                             <span class="hide-menu">View Store</span></a>
                         </li>
                     </ul>

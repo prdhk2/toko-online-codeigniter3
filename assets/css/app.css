@@ -40,7 +40,7 @@ a {
 	width: 100% !important;
 	padding: none !important;
 	margin: 0%;
-	background-color: #dc3545;
+	background-color: #fff;
 }
 
 .second-nav {
@@ -199,7 +199,7 @@ a {
 }
 
 .owl-nav button {
-	background-color: #dc3545 !important;
+	background-color: #fff !important;
 	width: 40px !important;
 	height: 40px !important;
 	border-radius: 50%;
@@ -240,7 +240,7 @@ a {
 }
 
 .logo-first {
-	color: #dc3545 !important;
+	color: #fff !important;
 }
 
 .logo-end {
@@ -352,14 +352,14 @@ a {
 
 .search-card .input-group-append .btn {
     border-radius: 0 1rem 1rem 0; /* Rounded right corners */
-    background-color:#dc3545; /* #dc3545 background for the button */
-    border-color:#dc3545;
+    background-color:#fff; /* #fff background for the button */
+    border-color:#fff;
     color: #ffffff; /* White text color */
 }
 
 .search-card .input-group-append .btn:hover {
-    background-color: #dc3545 !important; /* Lighter #dc3545 on hover */
-    border-color: #dc3545 !important;
+    background-color: #fff !important; /* Lighter #fff on hover */
+    border-color: #fff !important;
 }
 
 
@@ -389,7 +389,7 @@ a {
 
 .category-link:hover,
 .category-link.active {
-    background-color: #dc3545;
+    background-color: #fff;
     color: white;
 }
 
@@ -505,7 +505,7 @@ a {
 }
 
 .footer__widget .footer__widget__social a:hover {
-	background: #dc3545;
+	background: #fff;
 	color: #ffffff;
 	border-color: #ffffff;
 }
@@ -567,7 +567,7 @@ a {
 }
 
 .header__menu ul li .header__menu__dropdown li:hover>a {
-	color: #dc3545;
+	color: #fff;
 }
 
 .header__menu ul li .header__menu__dropdown li a {
@@ -578,7 +578,7 @@ a {
 }
 
 .header__menu ul li.active a {
-	color: #dc3545;
+	color: #fff;
 }
 
 .header__menu ul li:hover .header__menu__dropdown {
@@ -588,7 +588,7 @@ a {
 }
 
 .header__menu ul li:hover>a {
-	color: #dc3545;
+	color: #fff;
 }
 
 .header__menu ul li:last-child {
@@ -642,7 +642,7 @@ a {
 .header__cart ul li a span {
 	height: 13px;
 	width: 13px;
-	background: #dc3545;
+	background: #fff;
 	font-size: 10px;
 	color: #ffffff;
 	line-height: 13px;
@@ -727,26 +727,26 @@ a {
 }
 
 .navbar-brand:hover {
-    color: #ff4d4d; /* Lighter #dc3545 on hover */
+    color: #ff4d4d; /* Lighter #fff on hover */
 }
 
 .navbar-nav .nav-link {
-    color: black; /* #dc3545 color for nav links */
+    color: black; /* #fff color for nav links */
     font-weight: bold; /* Bold font for nav links */
 }
 
 .navbar-nav .nav-link:hover {
-    color: #ff4d4d; /* Lighter #dc3545 on hover */
+    color: #ff4d4d; /* Lighter #fff on hover */
 }
 
 .nav-item.dropdown .nav-link::after {
-    color: black; /* #dc3545 color for dropdown indicator */
+    color: black; /* #fff color for dropdown indicator */
 }
 
 .dropdown-menu {
     background-color: #333; /* Dark background for dropdown */
     border-radius: 0.5rem; /* Rounded corners for dropdown */
-    border: 1px solid #dc3545; /* #dc3545 border for dropdown */
+    border: 1px solid #fff; /* #fff border for dropdown */
 }
 
 .dropdown-item {
@@ -754,13 +754,13 @@ a {
 }
 
 .dropdown-item:hover {
-    background-color: #dc3545; /* #dc3545 background on hover */
+    background-color: #fff; /* #fff background on hover */
     color: #000; /* Black text on hover */
 }
 
 /* Adjust cart icon color */
 .nav-link .fas.fa-shopping-cart {
-    color: #dc3545;
+    color: #fff;
 }
 
 .nav-link .fas.fa-shopping-cart:hover {
@@ -768,7 +768,7 @@ a {
 }
 
 .navbar-social {
-	background-color: #dc3545;
+	background-color: #fff;
 	height: fit-content;
 	width: 100%;
 	color: white;
@@ -810,14 +810,14 @@ a {
 }
 
 .floating-menu ul li a:hover {
-    background: #dc3545;
+    background: #fff;
     border-radius: 2rem;
 	color: white;
 }
 
 .floating-menu ul li.active a,
 .floating-menu ul li a:hover {
-    background-color: #dc3545;
+    background-color: #fff;
 	border-radius: 2rem;
     color: white;
 }
@@ -883,7 +883,7 @@ a {
 }
 
 .card-product .badge-danger {
-    background-color: #dc3545;
+    background-color: #fff;
     color: white;
 	width: fit-content;
 }
@@ -898,7 +898,7 @@ a {
 }
 
 .cart-btn {
-	background-color: #dc3545;
+	background-color: #fff;
 	color: white;
 	border: none;
 	font-size: 18px;
@@ -917,8 +917,8 @@ a {
 
 .input-group-append .btn {
     border-radius: 0 0.5rem 0.5rem 0;
-    background-color: #dc3545;
-    border-color: #dc3545;
+    background-color: #fff;
+    border-color: #fff;
     color: white;
 }
 
@@ -926,6 +926,17 @@ a {
     background-color: #ff4d4d;
     border-color: #ff4d4d;
 }
+
+table td, table th {
+    vertical-align: middle;
+    height: 100%;
+}
+
+td {
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+
 
 @media (min-width: 768px) {
     .col-md-4 {

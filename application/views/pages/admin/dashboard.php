@@ -26,36 +26,36 @@
             <!-- Column -->
             <div class="col-md-6 col-lg-3">
                 <div class="card-hover">
-                    <div class="box bg-cyan text-center">
-                        <h1 class="font-light text-white"><i class="mdi mdi-view-dashboard"></i></h1>
-                        <h6 class="text-white">Dashboard</h6>
+                    <div class="box bg-white text-center">
+                        <h1 class="font-light" style="color: #5c90ff !important;"><i class="mdi mdi-view-dashboard"></i></h1>
+                        <h6 style="color: #5c90ff !important;">Dashboard</h6>
                     </div>
                 </div>
             </div>
             <!-- Column -->
             <div class="col-md-6 col-lg-3">
                 <div class="card-hover">
-                    <div class="box bg-success text-center">
-                        <h1 class="font-light text-white"><i class="mdi mdi-clipboard-text"></i></h1>
-                        <h6 class="text-white">Total Product</h6>
+                    <div class="box bg-white text-center">
+                        <h1 class="font-light" style="color: #5c90ff !important;"><i class="mdi mdi-clipboard-text"></i></h1>
+                        <h6 style="color: #5c90ff !important;">Total Product</h6>
                     </div>
                 </div>
             </div>
             <!-- Column -->
             <div class="col-md-6 col-lg-3">
                 <div class="card-hover">
-                    <div class="box bg-warning text-center">
-                        <h1 class="font-light text-white"><i class="mdi mdi-shopping"></i></h1>
-                        <h6 class="text-white">Total Sales</h6>
+                    <div class="box bg-white text-center">
+                        <h1 class="font-light" style="color: #5c90ff !important;"><i class="mdi mdi-shopping"></i></h1>
+                        <h6 style="color: #5c90ff !important;">Total Sales</h6>
                     </div>
                 </div>
             </div>
             <!-- Column -->
             <div class="col-md-6 col-lg-3">
                 <div class="card-hover">
-                    <div class="box bg-danger text-center">
-                        <h1 class="font-light text-white"><i class="mdi mdi-chart-pie"></i></h1>
-                        <h6 class="text-white">Revenue</h6>
+                    <div class="box bg-white text-center">
+                        <h1 class="font-light" style="color: #5c90ff !important;"><i class="mdi mdi-chart-pie"></i></h1>
+                        <h6 style="color: #5c90ff !important;">Revenue</h6>
                     </div>
                 </div>
             </div>

@@ -51,7 +51,7 @@
                     <!-- ============================================================== -->
                     <a class="navbar-brand item-center justify-content-center" href="<?= base_url('admin/dashboard'); ?>">
                         <!-- Logo icon -->
-                        <h2 class="p-2">Administrator</h2>
+                        <h2 class="p-2" style="color:#5c90ff !important">Administrator</h2>
                         <!--End Logo icon -->
                     </a>
                     <!-- ============================================================== -->
