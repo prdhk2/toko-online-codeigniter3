@@ -83,9 +83,9 @@ CREATE TABLE IF NOT EXISTS `orders` (
 
 -- Dumping data for table bakulsayur_db.orders: ~11 rows (approximately)
 INSERT INTO `orders` (`id`, `id_user`, `date`, `invoice`, `total`, `name`, `address`, `phone`, `status`) VALUES
-	(1, 5, '2020-03-18', '520200318210456', 36000000, 'Hakim', 'Kampung Malang Kulon 1/38-A', '087855777360', 'paid'),
+	(1, 5, '2020-03-18', '520200318210456', 36000000, 'Mad D', 'Konoha', '08378472357', 'paid'),
 	(2, 5, '2020-03-19', '520200319181238', 500000, 'Jotaro Kujo', 'Western', '218838383', 'delivered'),
-	(3, 5, '2020-03-24', '520200324223408', 3000000, 'Amir Muhammad Hakim', 'Kampung Malang Kulon 1/38-A', '087855777360', 'waiting'),
+	(3, 5, '2020-03-24', '520200324223408', 3000000, 'Ritsuki', 'Japan', '087855777360', 'waiting'),
 	(4, 5, '2024-06-14', '520240614164753', 695000, 'asda', 'asdasd', 'asdasd', 'paid'),
 	(5, 5, '2024-06-14', '520240614231207', 75000, 'aaa', 'aaa', '324532', 'paid'),
 	(6, 4, '2024-06-15', '420240615101111', 2575333, 'aaaaaaa', 'aaa', '111', 'waiting'),
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `orders_confirm` (
 
 -- Dumping data for table bakulsayur_db.orders_confirm: ~4 rows (approximately)
 INSERT INTO `orders_confirm` (`id`, `id_orders`, `account_name`, `account_number`, `nominal`, `note`, `image`) VALUES
-	(1, 1, 'Amir', '42424123333', 36000000, '-', '520200318210456-20200319173859.jpg'),
+	(1, 1, 'Mas D', '42424123333', 36000000, '-', '520200318210456-20200319173859.jpg'),
 	(2, 2, 'Dio Brando', '344312321', 500000, 'Mantap kang', '520200319181238-20200319181447.jpg'),
 	(3, 5, 'aaa', '111', 111, '-aaa', '520240614231207-20240614231253.jpg'),
 	(4, 9, 'ddd', '222', 1000, '-ddd', '520240617113454-20240617113924.jpg');
@@ -205,10 +205,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 -- Dumping data for table bakulsayur_db.user: ~4 rows (approximately)
 INSERT INTO `user` (`id`, `name`, `email`, `password`, `role`, `is_active`, `image`) VALUES
-	(4, 'Admin', 'admin@admin.com', '$2y$10$mLyToNOtVeLG.ziTUFPpCOOGD1P8cXZJj6ufU7J74TB63qVs2JjqK', 'admin', 1, 'admin-20240615211502.png'),
-	(5, 'Member', 'member@member.com', '$2y$10$ghbQkKwENFZnOxWAwtgSaeDV2gcI63ZorQEQkSxqlaUlrFUMNnLpy', 'member', 1, 'member-20200315232137.png'),
-	(6, 'dhika', 'dhika@gmail.com', '$2y$10$Ike2ZlxEyhblvTeMUpkmDOUHlqxDU.o0C28U3WPGZ1XYcV4yUt9Aq', 'member', 1, NULL),
-	(7, 'user1', 'user1@gmail.com', '$2y$10$eq584YVRqg25ZWIdp4BaqOf7Kyii1a17KVHXOM9OQk4/WUxrx16Km', 'member', 1, NULL);
+	(1, 'Admin', 'admin@admin.com', '$2y$10$mLyToNOtVeLG.ziTUFPpCOOGD1P8cXZJj6ufU7J74TB63qVs2JjqK', 'admin', 1, 'admin-20240615211502.png'),
+	(2, 'Member', 'member@member.com', '$2y$10$ghbQkKwENFZnOxWAwtgSaeDV2gcI63ZorQEQkSxqlaUlrFUMNnLpy', 'member', 1, 'member-20200315232137.png');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
