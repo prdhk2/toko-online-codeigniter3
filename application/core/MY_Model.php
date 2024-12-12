@@ -166,6 +166,29 @@ class MY_Model extends CI_Model
 
         return $this->pagination->create_links();     // Generate pagination
     }
+
+    public function delete($id) {
+        $this->db->where('id', $id);
+        $this->db->delete('cart');
+        return $this->db->affected_rows() > 0;
+    }
+
+    public function update_cart($id, $data) {
+        $this->db->where('id', $id);
+        return $this->db->update('cart', $data);
+    }
+
+    public function get_product_price($id_product) {
+        $this->db->where('id', $id_product);
+        $query = $this->db->get('product');
+        return $query->row();
+    }
+
+    public function get_cart_data($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('cart');
+        return $query->row();
+    }
 }
 
 /* End of file MY_Model.php */

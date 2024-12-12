@@ -93,35 +93,31 @@ class Cart extends MY_Controller
             $this->session->set_flashdata('error', 'Kuantitas tidak boleh kosong');
             redirect(base_url('cart/index'));
         }
-
-        $data['content']    = $this->cart->where('id', $id)->first();   // Mengambil data dari cart
-
-        if (!$data['content']) {
+    
+        $this->load->model('Cart_model');
+    
+        $cart_data = $this->Cart_model->get_cart_data($id);
+    
+        if (!$cart_data) {
             $this->session->set_flashdata('warning', 'Data tidak ditemukan');
             redirect(base_url('cart/index'));
         }
-
-        // Mengambil data produk yang dipilih, untuk mendapatkan price
-        $this->cart->table  = 'product';
-        $product            = $this->cart->where('id', $data['content']->id_product)->first();
-
-        // Menghitung subtotal baru
-        $data['input']      = (object) $this->input->post(null, true);
-        $subtotal           = $data['input']->qty * $product->price;
-
-        // Update data
-        $cart = [
-            'qty'       => $data['input']->qty,
-            'subtotal'  => $subtotal
-        ];
-
-        $this->cart->table  = 'cart';
-        if ($this->cart->where('id', $id)->update($cart)) {   // Jika update berhasil
+    
+        $product_price = $this->Cart_model->get_product_price($cart_data->id_product);
+    
+        $subtotal = $this->input->post('qty') * $product_price->price;
+    
+        $data = array(
+            'qty' => $this->input->post('qty'),
+            'subtotal' => $subtotal
+        );
+    
+        if ($this->Cart_model->update_cart($id, $data)) {
             $this->session->set_flashdata('success', 'Kuantitas berhasil diubah');
         } else {
             $this->session->set_flashdata('error', 'Oops! Terjadi kesalahan');
         }
-
+    
         redirect(base_url('cart/index'));
     }
 
@@ -129,22 +125,22 @@ class Cart extends MY_Controller
      * Delete suatu cart di halaman cart
      */
     public function delete($id) {
-        if (!$_POST) {
+        if (!$this->input->is_ajax_request() && !$this->input->method() == 'POST') {
             // Jika diakses tidak dengan menggunakan method post, kembalikan ke home (forbidden)
             redirect(base_url('cart'));
         }
-
+    
         if (!$this->cart->where('id', $id)->first()) {  // Jika data tidak ditemukan
             $this->session->set_flashdata('warning', 'Maaf data tidak ditemukan');
             redirect(base_url('cart/index'));
         }
-
-        if ($this->cart->where('id', $id)->delete()) {  // // Lakukan delete & Jika delete berhasil
+    
+        if ($this->cart->delete($id)) {  // // Lakukan delete & Jika delete berhasil
             $this->session->set_flashdata('success', 'Cart berhasil dihapus');
         } else {
             $this->session->set_flashdata('error', 'Oops, terjadi suatu kesalahan');
         }
-
+    
         redirect(base_url('cart'));
     }
 }

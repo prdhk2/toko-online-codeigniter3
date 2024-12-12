@@ -46,10 +46,13 @@
                                     </td>
                                     <td class="text-center">Rp.<?= number_format($row->subtotal, 0, ',', '.') ?>,-</td>
                                     <td>
-                                        <form action="<?= base_url("cart/delete/$row->id") ?>" method="POST">
-                                            <input type="hidden" name="id" value="<?= $row->id ?>">
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></button>
-                                        </form>
+                                    <form action="<?= base_url("cart/delete/$row->id") ?>" method="POST">
+                                        <?= form_open(base_url("cart/delete/$row->id"), array('method' => 'POST')) ?>
+                                        <?= form_hidden('id', $row->id) ?>
+                                        <?= form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash()) ?>
+                                        <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></button>
+                                        <?= form_close() ?>
+                                    </form>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
@@ -62,8 +65,8 @@
                     </table>
                 </div>
                 <div class="card-footer">
-                    <a href="<?= base_url('checkout') ?>" class="btn btn-danger float-right">Pembayaran <i class="fas fa-angle-right"></i></a>
-                    <a href="<?= base_url('') ?>" class="btn btn-danger text-white"><i class="fas fa-angle-left"></i> Kembali belanja</a>
+                    <a href="<?= base_url('checkout') ?>" class="btn btn-primary float-right">Pembayaran <i class="fas fa-angle-right"></i></a>
+                    <a href="<?= base_url('') ?>" class="btn btn-primary text-white"><i class="fas fa-angle-left"></i> Kembali belanja</a>
                 </div>
             </div>
         </div>

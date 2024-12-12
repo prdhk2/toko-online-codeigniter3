@@ -36,7 +36,6 @@ a {
 }
 
 .container-fluid {
-	display: flex;
 	width: 100% !important;
 	padding: none !important;
 	margin: 0%;
@@ -240,7 +239,7 @@ a {
 }
 
 .logo-first {
-	color: #fff !important;
+	color: #5c90ff !important;
 }
 
 .logo-end {
@@ -352,7 +351,7 @@ a {
 
 .search-card .input-group-append .btn {
     border-radius: 0 1rem 1rem 0; /* Rounded right corners */
-    background-color:#fff; /* #fff background for the button */
+    background-color:#007bff; /* #fff background for the button */
     border-color:#fff;
     color: #ffffff; /* White text color */
 }
@@ -375,7 +374,7 @@ a {
 	font-weight: 600;
 	justify-content: center;
 	text-align: center;
-	background-color: #bc3545 !important;
+	background-color: #5c90ff !important;
 	color: white !important;
 	
 }
@@ -771,7 +770,7 @@ a {
 	background-color: #fff;
 	height: fit-content;
 	width: 100%;
-	color: white;
+	color: #5c90ff;
 }
 
 /* ------------------ */
@@ -817,7 +816,7 @@ a {
 
 .floating-menu ul li.active a,
 .floating-menu ul li a:hover {
-    background-color: #fff;
+    background-color: #5c90ff;
 	border-radius: 2rem;
     color: white;
 }
@@ -898,7 +897,7 @@ a {
 }
 
 .cart-btn {
-	background-color: #fff;
+	background-color: #007bff;
 	color: white;
 	border: none;
 	font-size: 18px;
@@ -917,14 +916,14 @@ a {
 
 .input-group-append .btn {
     border-radius: 0 0.5rem 0.5rem 0;
-    background-color: #fff;
+    background-color: #007bff;
     border-color: #fff;
     color: white;
 }
 
 .input-group-append .btn:hover {
-    background-color: #ff4d4d;
-    border-color: #ff4d4d;
+    background-color: #0062cc;
+    border-color: #0062cc;
 }
 
 table td, table th {
@@ -937,6 +936,44 @@ td {
     border-bottom: 1px solid #dee2e6;
 }
 
+
+/* mini navbar start */
+.social-media-bar {
+	box-shadow: 10px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.marquee-wrapper {
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+.marquee-text {
+	font-weight: 500;
+	white-space: nowrap;
+	color: #000;
+	animation: marquee 25s linear infinite;
+}
+
+/* mini navbar end */
+
+@keyframes marquee {
+	from {
+		left: 100%;
+	}
+	to {
+		left: -100%;
+	}
+}
+
+@keyframes marquee {
+	from {
+		transform: translateX(100%);
+	}
+	to {
+		transform: translateX(-100%);
+	}
+}
 
 @media (min-width: 768px) {
     .col-md-4 {

@@ -1,10 +1,34 @@
 <div class="container-fluid">
-	<div class="navbar-social d-flex align-items-center">
-		<a href="#" target="_blank" class="nav-link p-2 mr-2"><i class="fab fa-whatsapp"></i></a>
-		<a href="#" target="_blank" class="nav-link p-2 mr-2"><i class="fab fa-instagram"></i></a>
-		<a href="#" target="_blank" class="nav-link p-2 mr-2"><i class="fab fa-facebook"></i></a>
-	</div>
+    <div class="row align-items-center">
+        <!-- Kolom untuk ikon media sosial di kiri -->
+        <div class="social-media-bar col-sm-4">
+            <div class="navbar-social d-flex align-items-center justify-content-center">
+                <a href="#" target="_blank" class="nav-link p-2 me-2 d-flex align-items-center">
+                    <i class="fab fa-lg fa-whatsapp me-2"></i>
+                    <p style="font-size:14px !important; margin-bottom: 0;">+62 832468324673</p>
+                </a>
+                <a href="#" target="_blank" class="nav-link p-2 me-2 d-flex align-items-center">
+                    <i class="fab fa-lg fa-instagram me-2"></i>
+                    <p style="font-size:14px !important; margin-bottom: 0;">@bakulsayur</p>
+                </a>
+                <a href="#" target="_blank" class="nav-link p-2 me-2 d-flex align-items-center">
+                    <i class="fab fa-lg fa-facebook me-2"></i>
+                    <p style="font-size:14px !important; margin-bottom: 0;">Bakul Sayur</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- Kolom untuk teks berjalan di kanan -->
+        <div class="col-sm-8 overflow-hidden">
+            <div class="marquee-wrapper">
+                <div class="marquee-text">
+                    Test marquee teks untuk promo ! Asnfjsanb ajsfn asfjnasf
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 <nav class="navbar navbar-expand-lg">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

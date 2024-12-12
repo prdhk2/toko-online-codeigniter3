@@ -4,31 +4,27 @@
     <div class="row mt-4">
         <div class="col-md-9">
             <div class="row mb-3">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="card mb-3 sort-by">
                         <div class="card-body">
                             Kategori: <strong><?= isset($category) ? $category : 'Semua Kategori' ?></strong>
                             <span class="float-right">
                                 Urutkan harga: 
-                                <a href="<?= base_url('shop/sortby/asc') ?>" class="badge badge-danger">
+                                <a href="<?= base_url('shop/sortby/asc') ?>" class="badge badge-primary">
                                     <i class="fa-solid fa-chevron-down"></i> Termurah
                                 </a> 
                                 | 
-                                <a href="<?= base_url('shop/sortby/desc') ?>" class="badge badge-danger">
+                                <a href="<?= base_url('shop/sortby/desc') ?>" class="badge badge-primary">
                                     <i class="fa-solid fa-chevron-up"></i> Termahal
                                 </a>
                             </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="search-card mb-3">
-                        <div class="card-body">
-                            <form action="<?= base_url('shop/search') ?>" method="POST">
+                        
+                
+                            <form class="mt-3" action="<?= base_url('shop/search') ?>" method="POST">
                                 <div class="input-group">
                                     <input type="text" name="keyword" class="form-control" placeholder="Cari" value="<?= $this->session->userdata('keyword') ?>">
                                     <div class="input-group-append">
-                                        <button class="btn btn-danger" type="submit">
+                                        <button class="btn btn-primary" type="submit">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
