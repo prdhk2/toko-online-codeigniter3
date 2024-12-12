@@ -388,7 +388,7 @@ a {
 
 .category-link:hover,
 .category-link.active {
-    background-color: #fff;
+    background-color: #5c90ff;
     color: white;
 }
 
@@ -504,9 +504,9 @@ a {
 }
 
 .footer__widget .footer__widget__social a:hover {
-	background: #fff;
+	background: #007bff;
 	color: #ffffff;
-	border-color: #ffffff;
+	border-color: #007bff;
 }
 
 .footer__copyright {

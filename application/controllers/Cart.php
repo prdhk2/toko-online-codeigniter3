@@ -9,6 +9,7 @@ class Cart extends MY_Controller
     public function __construct() {
         parent::__construct();
         
+        $this->load->model('Promo_model');
         $is_login = $this->session->userdata('is_login');
         $this->id = $this->session->userdata('id');
 
@@ -19,6 +20,7 @@ class Cart extends MY_Controller
     }
 
     public function index() {
+        $data['promos']  = $this->Promo_model->getAll();
         $data['title']      = 'Keranjang Belanja';
         $data['content']    = $this->cart->select([
                 'cart.id', 'cart.qty', 'cart.subtotal',

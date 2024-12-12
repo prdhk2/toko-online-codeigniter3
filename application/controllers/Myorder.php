@@ -16,9 +16,13 @@ class Myorder extends MY_Controller
             redirect(base_url());
             return;
         }
+        $this->load->model('Promo_model');
+
     }
 
     public function index() {
+        $data['promos']  = $this->Promo_model->getAll();
+
         $data['title']      = 'Daftar Order';
         $data['content']    = $this->myorder->where('id_user', $this->id)   // Ambil list orders dari user ini
                                 ->orderBy('date', 'DESC')                   // Urutkan dari data terbaru

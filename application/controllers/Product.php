@@ -9,6 +9,7 @@ class Product extends MY_Controller
 
         $this->load->model('Category_model', 'category');
         $this->load->model('Product_model', 'product');
+        $this->load->model('Promo_model');
         $this->load->helper('text');
 
         $role = $this->session->userdata('role');
@@ -22,6 +23,7 @@ class Product extends MY_Controller
      public function index() {
         $data['content'] = $this->product->get_all_products();
         $data['breadcum'] = 'List of Products';
+        $data['promos'] = $this->Promo_model->getAll();
         
         $this->load->view('layouts/admin/_header');
         $this->load->view('layouts/admin/_sidebar');

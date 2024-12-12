@@ -16,11 +16,16 @@ class Checkout extends MY_Controller
             redirect(base_url());
             return;
         }
+
+        $this->load->model('Promo_model');
+
     }
 
     public function index($input = null) {
         // Mengambil list cart yang akan dicheckout
         $this->checkout->table  = 'cart';
+        $data['promos']  = $this->Promo_model->getAll();
+
         $data['cart'] = $this->checkout->select([
                 'cart.id', 'cart.qty', 'cart.subtotal',
                 'product.title', 'product.image', 'product.price'
@@ -47,6 +52,8 @@ class Checkout extends MY_Controller
      * dan memindahkan list cart user ke 'order_detail'
      */
     public function create() {
+        $data['promos']  = $this->Promo_model->getAll();
+
         if (!$_POST) {
             redirect(base_url('checkout'));
         } else {

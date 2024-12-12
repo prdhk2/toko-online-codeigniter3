@@ -14,6 +14,7 @@ class Home extends MY_Controller {
     public function index($page = null) {
         $data['title'] = 'Homepage';
         $data['banners'] = $this->Banner_model->getBanners();
+        $data['promos']  = $this->Promo_model->getAll();
         
         $data['content'] = $this->home->select(
                 [
@@ -33,6 +34,7 @@ class Home extends MY_Controller {
     }
 
     public function All_products() {
+        $data['promos']  = $this->Promo_model->getAll();
         $data['content'] = $this->home->select(
             [
                 'product.id', 'product.title AS product_title', 'product.description', 'product.image', 'product.price', 'product.is_available',
@@ -51,7 +53,7 @@ class Home extends MY_Controller {
 
     public function promoIndex() {
         $data['promos'] = $this->Promo_model->getAll();
-        $data['page'] = 'pages/frontend//promo/index';
+        $data['page'] = 'pages/frontend/promo/index';
 
         $this->view($data);
     }

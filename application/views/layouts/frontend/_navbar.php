@@ -22,7 +22,9 @@
         <div class="col-sm-8 overflow-hidden">
             <div class="marquee-wrapper">
                 <div class="marquee-text">
-                    Test marquee teks untuk promo ! Asnfjsanb ajsfn asfjnasf
+                    <?php foreach ($promos as $promo) : ?>
+                        Promo of the day ! Dapatkan diskon <span style="color:red;"><?= $promo->discount ?>%</span>, Berlaku mulai tanggal <span style="color:red;"><?= $promo->start_date ?></span> hingga <span style="color:red;"><?= $promo->end_date ?></span>. Ayo Buruan belanja sekarang !
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
