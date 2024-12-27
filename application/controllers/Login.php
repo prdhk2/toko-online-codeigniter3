@@ -18,9 +18,13 @@ class Login extends MY_Controller
             }
             return;
         }
+
+        $this->load->model('Promo_model');
     }
     
     public function index() {
+
+        $data['promos'] =   $this->Promo_model->getAll();
         if (!$_POST) {
             $input = (object) $this->login->getDefaultValues();
         } else {
@@ -30,7 +34,7 @@ class Login extends MY_Controller
         if (!$this->login->validate()) {    // Jika validasi gagal
             $data['title'] = 'Login';
             $data['input'] = $input;
-            $data['page'] = 'pages/frontend//auth/login';
+            $data['page'] = 'pages/frontend/auth/login';
 
             $this->view($data);
 

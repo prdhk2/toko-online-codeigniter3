@@ -52,26 +52,22 @@ class Checkout extends MY_Controller
      * dan memindahkan list cart user ke 'order_detail'
      */
     public function create() {
-        $data['promos']  = $this->Promo_model->getAll();
-
         if (!$_POST) {
             redirect(base_url('checkout'));
         } else {
             $input = (object) $this->input->post(null, true);
         }
-
-        if (!$this->checkout->validate()) { // Jika validasi gagal, kembalikan ke index dengan kirim last input
+    
+        if (!$this->checkout->validate()) {
             return $this->index($input);
         }
-
-        // Menghitung total dari subtotal order suatu user
+    
         $total = $this->db->select_sum('subtotal')
             ->where('id_user', $this->id)
             ->get('cart')
-            ->row()         // Select first row
-            ->subtotal;     // Select column subtotal
-
-        // Menyiapkan insert table orders
+            ->row()
+            ->subtotal;
+    
         $data = [
             'id_user'   => $this->id,
             'date'      => date('Y-m-d'),
@@ -79,36 +75,57 @@ class Checkout extends MY_Controller
             'total'     => $total,
             'name'      => $input->name,
             'address'   => $input->address,
-            'phone'    => $input->phone,
+            'phone'     => $input->phone,
             'status'    => 'waiting'
         ];
-
-        // Jika insert berhasil, siapkan insert lagi ke dalam order_detail
-        if ($id_orders = $this->checkout->create($data)) { 
-            // Ambil list cart yang telah dipesan user
-            $cart = $this->db->where('id_user', $this->id) 
+    
+        if ($id_orders = $this->checkout->create($data)) {
+            $cart = $this->db->where('id_user', $this->id)
                 ->get('cart')
                 ->result_array();
-
-            // Modifikasi tiap cart
+    
             foreach ($cart as $row) {
-                $row['id_orders'] = $id_orders;             // Tambah kolom id_order
-                unset($row['id'], $row['id_user']);         // Hapus kolom tidak penting
-                $this->db->insert('order_detail', $row);    // Insert ke tabel order_detail
+                $row['id_orders'] = $id_orders;
+                unset($row['id'], $row['id_user']);
+                $this->db->insert('order_detail', $row);
             }
-
-            $this->db->delete('cart', ['id_user' => $this->id]);    // Hapus cart user sekarang
-
-            $this->session->set_flashdata('success', 'Data berhasil disimpan');
-
-            $data['title']      = 'Checkout Success';
-            $data['content']    = (object) $data;
-            $data['page']       = 'pages/frontend/checkout/success';
-
-            $this->view($data);
+    
+            $this->db->delete('cart', ['id_user' => $this->id]);
+    
+            $transaction = [
+                'transaction_details' => [
+                    'order_id' => $id_orders,
+                    'gross_amount' => $total
+                ],
+                'customer_details' => [
+                    'first_name' => $input->name,
+                    'last_name' => '',
+                    'email' => $input->email,
+                    'phone' => $input->phone
+                ],
+                'item_details' => []
+            ];
+    
+            foreach ($cart as $row) {
+                $transaction['item_details'][] = [
+                    'id' => $row['id'],
+                    'price' => $row['price'],
+                    'quantity' => $row['quantity'],
+                    'name' => $row['name']
+                ];
+            }
+    
+            $response = $this->midtrans->createTransaction($transaction);
+    
+            if ($response['status_code'] == 201) {
+                redirect($response['redirect_url']);
+            } else {
+                $this->session->set_flashdata('error', 'Oops! Terjadi kesalahan');
+                return $this->index($input);
+            }
         } else {
             $this->session->set_flashdata('error', 'Oops! Terjadi kesalahan');
-            return $this->index($input);    // Kembali ke index dengan kirim last input
+            return $this->index($input);
         }
     }
 }

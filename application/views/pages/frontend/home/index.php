@@ -44,7 +44,7 @@
                                 <h5 class="card-title"><?= $row->product_title ?></h5>
                                 <p class="card-text"><strong>Rp.<?= number_format($row->price, 0, ',', '.') ?>,-</strong></p>
                                 <p class="card-text card-description"><?= $row->description ?></p>
-                                <a href="<?= base_url("shop/category/$row->category_slug") ?>" class="badge badge-danger">
+                                <a href="<?= base_url("shop/category/$row->category_slug") ?>" class="badge badge-primary">
                                     <i class="fas fa-tags"></i> <?= $row->category_title ?>
                                 </a>
                             </div>

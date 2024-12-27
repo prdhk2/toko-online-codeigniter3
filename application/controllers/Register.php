@@ -13,9 +13,12 @@ class Register extends MY_Controller
             redirect(base_url());   // Jika sudah login, redirect ke home
             return;
         }
+
+        $this->load->model('Promo_model');
     }
 
     public function index() {
+        $data['promos'] =   $this->Promo_model->getAll();
         // Apakah ada post ke controller ini
         if (!$_POST) {
             $input = (object) $this->register->getDefaultValues();

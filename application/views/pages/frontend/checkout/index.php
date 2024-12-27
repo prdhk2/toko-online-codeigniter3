@@ -30,7 +30,7 @@
                             <?= form_error('phone') ?>
                         </div>
 
-                        <button class="btn btn-danger" type="submit">Simpan</button>
+                        <button class="btn btn-primary" type="submit">Simpan</button>
                     </form>
                 </div>
             </div>
