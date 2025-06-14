@@ -8,6 +8,8 @@ class Profile extends MY_Controller
 
     public function __construct() {
         parent::__construct();
+        $this->load->model('Promo_model');
+
         
         $is_login = $this->session->userdata('is_login');
         $this->id = $this->session->userdata('id');
@@ -19,6 +21,8 @@ class Profile extends MY_Controller
     }
 
     public function index() {
+        $data['promos']     = $this->Promo_model->getAll();
+
         $data['title']      = 'Profile';
         $data['content']    = $this->profile->where('id', $this->id)->first();
         $data['page']       = 'pages/frontend//profile/index';
@@ -27,6 +31,8 @@ class Profile extends MY_Controller
     }
 
     public function update($id) {
+        $data['promos']  = $this->Promo_model->getAll();
+
         $data['content'] = $this->profile->where('id', $id)->first();
 
         if (!$data['content']) {
@@ -72,11 +78,15 @@ class Profile extends MY_Controller
             return;
         }
 
-        if ($this->profile->where('id', $id)->update($data['input'])) {   // Update data
+        if ($this->profile->update($id, $data['input'])) {
             $this->session->set_flashdata('success', 'Data berhasil diubah');
         } else {
             $this->session->set_flashdata('error', 'Oops! Terjadi suatu kesalahan');
         }
+
+
+        // $this->session->set_flashdata('image_error', $this->upload->display_errors());
+        // redirect(base_url("profile/update/$id"));
 
         redirect(base_url('profile'));
     }
@@ -99,6 +109,20 @@ class Profile extends MY_Controller
 
         return true;
     }
+
+    public function unique_no_telp($no_telp) {
+
+        $user = $this->profile->where('no_telp', $no_telp)->first();
+        $id   = $this->input->post('id'); // agar saat update data diri sendiri tidak error
+
+        if ($user && $user->id != $id) {
+            $this->form_validation->set_message('unique_no_telp', '%s sudah digunakan.');
+            return FALSE;
+        }
+
+        return TRUE;
+    }
+
 }
 
 /* End of file Profile.php */

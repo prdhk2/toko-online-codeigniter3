@@ -11,6 +11,8 @@ class Profile_model extends MY_Model
         return [
             'name'  => '',
             'email' => '',
+            'no_telp' => '',
+            'address    ' => '',
             'image' => ''
         ];
     }
@@ -27,6 +29,17 @@ class Profile_model extends MY_Model
                 'field' => 'email',
                 'label' => 'E-Mail',
                 'rules' => 'trim|required|valid_email|callback_unique_email'
+            
+            ],
+            [
+                'field' => 'no_telp',
+                'label' => 'No Handphone',
+                'rules' => 'trim|required|regex_match[/^08[0-9]{8,11}$/]|callback_unique_no_telp'
+            ],
+            [
+                'field' => 'address',
+                'label' => 'Alamat',
+                'rules' => 'trim|required'
             ]
         ];
 

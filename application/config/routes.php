@@ -61,6 +61,13 @@ $route['home/(:num)']       = 'home/index/$1';
 $route['order/(:num)']      = 'order/index/$1';
 $route['products']          = 'home/All_products';
 
+$route['payment/unfinish']  = 'payment/unfinish';
+$route['payment/finish']    = 'payment/finish';
+$route['payment/error']     = 'payment/error';
+
+$route['address']           = 'address/add';
+$route['address/store']     = 'address/store';
+
 $route['available_promo']             = 'home/promoIndex';
 
 // admin routes

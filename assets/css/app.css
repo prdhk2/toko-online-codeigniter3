@@ -759,7 +759,7 @@ a {
 
 /* Adjust cart icon color */
 .nav-link .fas.fa-shopping-cart {
-    color: #fff;
+    color: #000000;
 }
 
 .nav-link .fas.fa-shopping-cart:hover {

@@ -10,13 +10,10 @@ class Cart extends MY_Controller
         parent::__construct();
         
         $this->load->model('Promo_model');
+
         $is_login = $this->session->userdata('is_login');
         $this->id = $this->session->userdata('id');
 
-        if (!$is_login || $is_login = $this->session->userdata('role') != 'member') {   // Jika ternyata belum ada session
-            redirect(base_url());
-            return;
-        }
     }
 
     public function index() {
@@ -29,7 +26,7 @@ class Cart extends MY_Controller
             ->join('product')
             ->where('cart.id_user', $this->id)
             ->get();
-        $data['page']       = 'pages/frontend/cart/index';
+        $data['page']       = 'pages/frontend//cart/index';
 
         return $this->view($data);
     }
@@ -38,29 +35,34 @@ class Cart extends MY_Controller
      * Menambah produk beserta kuantitasnya di home
      */
     public function add() {
+        $is_login = $this->session->userdata('is_login');
+
+        if (!$is_login) {   // Jika ternyata belum ada session
+            redirect(base_url('login'));
+            return;
+        }
+
         if (!$_POST || $this->input->post('qty') < 1) {
             $this->session->set_flashdata('error', 'Kuantitas tidak boleh kosong');
             redirect(base_url());
         } else {
             $input              = (object) $this->input->post(null, true);
 
-            // Mengambil data produk yang dipilih, untuk mendapatkan price
             $this->cart->table  = 'product';
             $product            = $this->cart->where('id', $input->id_product)->first();
 
-            // Ambil cart untuk dicek apakah user sudah pesan
             $this->cart->table  = 'cart';
             $cart               = $this->cart->where('id_user', $this->id)->where('id_product', $input->id_product)->first();
 
             $subtotal           = $product->price * $input->qty;
 
-            if ($cart) {    // Jika ternyata user sudah pesan, maka update cart
+            if ($cart) { 
                 $data = [
                     'qty'       => $cart->qty + $input->qty,
                     'subtotal'  => $cart->subtotal + $subtotal
                 ];
 
-                if ($this->cart->where('id', $cart->id)->update($data)) {   // Jika update berhasil
+                if ($this->cart->where('id', $cart->id)->update($data)) {
                     $this->session->set_flashdata('success', 'Produk berhasil ditambahkan');
                 } else {
                     $this->session->set_flashdata('error', 'Oops! Terjadi kesalahan');
@@ -69,7 +71,6 @@ class Cart extends MY_Controller
                 redirect(base_url());
             }
 
-            // --- Insert cart baru ---
             $data = [
                 'id_user'       => $this->id,
                 'id_product'    => $input->id_product,

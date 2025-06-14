@@ -7,8 +7,16 @@ class Shop extends MY_Controller
     /**
      * Sorting harga
      */
-    public function sortby($sort, $page = null)
-    {
+
+    public function __construct() {
+        parent::__construct();
+        
+        $this->load->model('Promo_model');
+    }
+
+    public function sortby($sort, $page = null) {
+        $data['promos']  = $this->Promo_model->getAll();
+
         $data['title'] = 'Belanja';
         $data['content']    = $this->shop->select(
                 [
@@ -25,7 +33,7 @@ class Shop extends MY_Controller
         $data['pagination'] = $this->shop->makePagination(
             base_url("shop/sortby/$sort"), 4, $data['total_rows']
         );
-        $data['page'] = 'pages/frontend//home/index';     // Mengarahkan halaman
+        $data['page'] = 'pages/frontend/home/index';     // Mengarahkan halaman
 
         $this->view($data);
     }
@@ -35,8 +43,9 @@ class Shop extends MY_Controller
      * Param 1: slug kategory
      * Param 2: nilai pagination
      */
-    public function category($category, $page = null)
-    {
+    public function category($category, $page = null) {
+        $data['promos']  = $this->Promo_model->getAll();
+
         $data['title'] = 'Belanja';
         $data['content']    = $this->shop->select(
                 [
@@ -62,8 +71,9 @@ class Shop extends MY_Controller
         $this->view($data);
     }
 
-    public function search($page = null)
-    {
+    public function search($page = null) {
+        $data['promos']  = $this->Promo_model->getAll();
+
         if (isset($_POST['keyword'])) {
             $this->session->set_userdata('keyword', $this->input->post('keyword'));
         } else {
@@ -88,7 +98,7 @@ class Shop extends MY_Controller
             ->orLike('product.description', $keyword)
             ->count();
         $data['pagination'] = $this->shop->makePagination(base_url('shop/search'), 3, $data['total_rows']);
-        $data['page']       = 'pages/frontend//home/index';
+        $data['page']       = 'pages/frontend/home/index';
 
         $this->view($data);
     }

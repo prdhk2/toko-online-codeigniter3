@@ -20,6 +20,11 @@ class MY_Model extends CI_Model
         }
     }
 
+        public function updateData($data)
+        {
+            return $this->db->update($this->table, $data);
+        }
+
     // Form validation
     public function validate()
     {

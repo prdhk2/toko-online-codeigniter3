@@ -24,7 +24,16 @@
                         <div class="card-body">
                             <p>Nama: <?= $content->name ?></p>
                             <p>Email: <?= $content->email ?></p>
+                            <p>No Handphone: <?= $content->no_telp ?></p>
+                            <p>Alamat:
+                                <ul>
+                                    <li><?= $content->address ?></li>
+                                    <li><?= $content->address ?></li>
+                                    <li><?= $content->address ?></li>
+                                </ul> 
+                            </p>
                             <a href="<?= base_url("profile/update/$content->id") ?>" class="btn btn-primary">Edit</a>
+                            <a href="#" class="btn btn-primary">Tambah Alamat</a>
                         </div>
                     </div>
                 </div>

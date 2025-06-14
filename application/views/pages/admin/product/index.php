@@ -56,6 +56,7 @@
                         <div class="form-group">
                             <label for="image">Product Image</label>
                             <input type="file" class="form-control" id="image" name="image" required>
+                            <p style="color:red; font-size:12px">*jpeg, png, jpg</p>
                         </div>
                         <button type="submit" class="btn btn-primary mt-3">Add Product</button>
                     </form>

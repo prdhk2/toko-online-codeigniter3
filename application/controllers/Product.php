@@ -53,7 +53,7 @@ class Product extends MY_Controller
         if (!$this->upload->do_upload('image')) {
             $error = $this->upload->display_errors();
             $this->session->set_flashdata('error', $error);
-            redirect('pages/admin/product/add');
+            redirect('admin/product/add');
         } else {
             $uploadData = $this->upload->data();
             $data = [

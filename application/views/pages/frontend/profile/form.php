@@ -23,6 +23,16 @@
                             <?= form_error('email') ?>
                         </div>
                         <div class="form-group">
+                            <label for="">No Handphone</label>
+                            <?= form_input(['type' => 'text', 'name' => 'no_telp', 'value' => $input->no_telp, 'class' => 'form-control', 'placeholder' => 'Masukan no handphone aktif', 'required' => true]) ?>
+                            <?= form_error('no_telp') ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Alamat</label>
+                            <?= form_input(['type' => 'text', 'name' => 'address', 'value' => $input->address, 'class' => 'form-control', 'placeholder' => 'Masukan alamat aktif', 'required' => true]) ?>
+                            <?= form_error('address') ?>
+                        </div>
+                        <div class="form-group">
                             <label for="">Password</label>
                             <?= form_password('password', '', ['class' => 'form-control', 'placeholder' => 'Password minimal 8 karakter']) ?>
                             <?= form_error('password') ?>
