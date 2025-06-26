@@ -24,7 +24,7 @@
 /* Show it is fixed to the top */
 
 .box-title {
-	border-radius: 1rem;
+	border-radius: 0.75rem;
 	justify-content: center;
 	background-color: white;
 	border: none !important;

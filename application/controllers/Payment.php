@@ -34,10 +34,28 @@ class Payment extends CI_Controller {
     }
 
     public function finish() {
-        // Halaman ketika pembayaran sukses
-        $data['order_id'] = $this->input->get('order_id');
+        $invoice = $this->session->userdata('last_invoice');
+
+        if (!$invoice) {
+            echo 'Invoice tidak ditemukan di session.';
+            return;
+        }
+
+        $order = $this->Order_model->get_by_invoice($invoice);
+
+        if (!$order) {
+            echo 'Order tidak ditemukan di database.';
+            return;
+        }
+
+        $this->session->unset_userdata('last_invoice'); // optional: hapus agar gak numpuk
+
+        $data['order'] = $order;
+        $data['order_id'] = $order->id;
+
         $this->load->view('pages/frontend/payment/payment_finish', $data);
     }
+
 
     public function unfinish() {
         // Halaman ketika pembayaran pending

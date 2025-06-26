@@ -2,7 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Address_model extends CI_Model {
-    // Method untuk mendapatkan alamat berdasarkan user ID
+
+    public function insert($address_data) {
+        return $this->db->insert('user_addresses', $address_data);
+    }
+
     public function get_by_user($user_id) {
         return $this->db->where('user_id', $user_id)
                        ->order_by('is_primary', 'DESC') // Urutkan alamat utama pertama

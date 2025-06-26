@@ -72,33 +72,60 @@ class Shop extends MY_Controller
     }
 
     public function search($page = null) {
-        $data['promos']  = $this->Promo_model->getAll();
+        $data['promos'] = $this->Promo_model->getAll();
+        
+        // Get distinct categories for sidebar
+        $data['categories'] = $this->db->distinct()
+                                    ->select('title, slug')
+                                    ->order_by('title', 'ASC')
+                                    ->get('category')
+                                    ->result();
 
         if (isset($_POST['keyword'])) {
             $this->session->set_userdata('keyword', $this->input->post('keyword'));
-        } else {
+        } elseif (!$this->session->userdata('keyword')) {
             redirect(base_url('home'));
         }
 
         $keyword = $this->session->userdata('keyword');
 
-        $data['title']      = 'Pencarian: Produk';
-        $data['content']    = $this->shop->select(
-                [
-                    'product.id', 'product.title AS product_title', 'product.description', 'product.image', 'product.price', 'product.is_available',
-                    'category.title AS category_title', 'category.slug AS category_slug'
-                ]
-            )
-                ->join('category')
-                ->like('product.title', $keyword)
-                ->orLike('product.description', $keyword)   // Tidak hanya mencari di title melainkan di desc juga
-                ->paginate($page)
-                ->get();
-        $data['total_rows'] = $this->shop->like('product.title', $keyword)
-            ->orLike('product.description', $keyword)
-            ->count();
-        $data['pagination'] = $this->shop->makePagination(base_url('shop/search'), 3, $data['total_rows']);
-        $data['page']       = 'pages/frontend/home/index';
+        // Initialize query
+        $this->shop->select([
+                'product.id', 
+                'product.title AS product_title', 
+                'product.description', 
+                'product.image', 
+                'product.price', 
+                'product.is_available',
+                'product.slug AS product_slug',
+                'category.title AS category_title', 
+                'category.slug AS category_slug'
+            ])
+            ->join('category', 'category.id = product.id_category')
+            ->where('product.is_available', 1);
+
+        // Add search conditions using DB group_start
+        $this->db->group_start()
+            ->like('product.title', $keyword)
+            ->or_like('product.description', $keyword)
+            ->group_end();
+
+        $data['title'] = 'Pencarian: ' . $keyword;
+        $data['content'] = $this->shop->paginate($page)->get();
+            
+        // Count total rows
+        $this->db->group_start()
+            ->like('product.title', $keyword)
+            ->or_like('product.description', $keyword)
+            ->group_end();
+            
+        $data['total_rows'] = $this->shop->where('product.is_available', 1)->count();
+        $data['pagination'] = $this->shop->makePagination(
+            base_url('shop/search'), 
+            3, 
+            $data['total_rows']
+        );
+        $data['page'] = 'pages/frontend/home/index';
 
         $this->view($data);
     }

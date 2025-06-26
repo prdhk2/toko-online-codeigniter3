@@ -9,6 +9,7 @@ class Profile extends MY_Controller
     public function __construct() {
         parent::__construct();
         $this->load->model('Promo_model');
+        $this->load->model('Address_model');
 
         
         $is_login = $this->session->userdata('is_login');
@@ -22,10 +23,12 @@ class Profile extends MY_Controller
 
     public function index() {
         $data['promos']     = $this->Promo_model->getAll();
+        $data['addresses']  = $this->Address_model->get_by_user($this->id);
 
         $data['title']      = 'Profile';
         $data['content']    = $this->profile->where('id', $this->id)->first();
-        $data['page']       = 'pages/frontend//profile/index';
+        
+        $data['page']       = 'pages/frontend/profile/index';
 
         return $this->view($data);
     }
@@ -34,6 +37,7 @@ class Profile extends MY_Controller
         $data['promos']  = $this->Promo_model->getAll();
 
         $data['content'] = $this->profile->where('id', $id)->first();
+
 
         if (!$data['content']) {
             $this->session->set_flashdata('warning', 'Maaf data tidak ditemukan');

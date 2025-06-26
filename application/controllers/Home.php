@@ -16,18 +16,35 @@ class Home extends MY_Controller {
         $data['banners'] = $this->Banner_model->getBanners();
         $data['promos']  = $this->Promo_model->getAll();
         
-        $data['content'] = $this->home->select(
-                [
-                    'product.id', 'product.title AS product_title', 'product.description', 'product.image', 'product.price', 'product.is_available',
-                    'category.title AS category_title', 'category.slug AS category_slug'
-                ]
-            )
-            ->join('category')
+        // Get distinct categories for sidebar
+        $data['categories'] = $this->db->distinct()
+                                    ->select('title, slug')
+                                    ->get('category')
+                                    ->result();
+        
+        // Get products with proper joins
+        $data['content'] = $this->home->select([
+                'product.id', 
+                'product.title AS product_title', 
+                'product.description', 
+                'product.image', 
+                'product.price', 
+                'product.is_available',
+                'product.slug AS product_slug', // Added product slug for URLs
+                'category.title AS category_title', 
+                'category.slug AS category_slug'
+            ])
+            ->join('category', 'category.id = product.id_category') // Ensure proper join condition
             ->where('product.is_available', 1)
             ->paginate($page)
             ->get();
+        
         $data['total_rows'] = $this->home->where('product.is_available', 1)->count();
-        $data['pagination'] = $this->home->makePagination(base_url('home'), 2, $data['total_rows']);
+        $data['pagination'] = $this->home->makePagination(
+            base_url('home'), 
+            2, 
+            $data['total_rows']
+        );
         $data['page'] = 'pages/frontend/home/index';
 
         $this->view($data);

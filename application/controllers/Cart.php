@@ -17,17 +17,23 @@ class Cart extends MY_Controller
     }
 
     public function index() {
-        $data['promos']  = $this->Promo_model->getAll();
-        $data['title']      = 'Keranjang Belanja';
-        $data['content']    = $this->cart->select([
-                'cart.id', 'cart.qty', 'cart.subtotal',
-                'product.title', 'product.image', 'product.price'
+        $data['promos'] = $this->Promo_model->getAll();
+        $data['title'] = 'Keranjang Belanja';
+        
+        $data['content'] = $this->cart->select([
+                'cart.id', 
+                'cart.qty', 
+                'cart.subtotal',
+                'product.title', 
+                'product.image', 
+                'product.price',
+                'product.product_code'
             ])
             ->join('product')
             ->where('cart.id_user', $this->id)
             ->get();
-        $data['page']       = 'pages/frontend//cart/index';
-
+        
+        $data['page'] = 'pages/frontend/cart/index';
         return $this->view($data);
     }
 

@@ -41,8 +41,8 @@ class Address extends CI_Controller {
         $this->form_validation->set_rules('phone', 'No. Telepon', 'required|numeric|min_length[10]');
         $this->form_validation->set_rules('address_line1', 'Alamat Lengkap', 'required|min_length[10]');
         $this->form_validation->set_rules('province_id', 'Provinsi', 'required|numeric');
-        $this->form_validation->set_rules('city_id', 'Kota/Kabupaten', 'required|numeric');
-        $this->form_validation->set_rules('district_id', 'Kecamatan', 'required|numeric');
+        $this->form_validation->set_rules('city_id', 'Kota/Kabupaten');
+        $this->form_validation->set_rules('district_id', 'Kecamatan');
         $this->form_validation->set_rules('postal_code', 'Kode Pos', 'required|numeric');
 
         if ($this->form_validation->run() == FALSE) {
@@ -53,11 +53,11 @@ class Address extends CI_Controller {
                 'user_id' => $this->session->userdata('id'),
                 'recipient_name' => $this->input->post('recipient_name'),
                 'phone' => $this->input->post('phone'),
-                'address_line1' => $this->input->post('address_line1'),
-                'address_line2' => $this->input->post('address_line2'),
-                'province_id' => $this->input->post('province_id'),
-                'city_id' => $this->input->post('city_id'),
-                'district_id' => $this->input->post('district_id'),
+                'address_line' => $this->input->post('address_line1'),
+                'address_detail' => $this->input->post('address_line2'),
+                'province' => $this->input->post('province_id'),
+                'city' => "test",
+                'district' => "test",
                 'postal_code' => $this->input->post('postal_code'),
                 'is_primary' => $this->input->post('is_primary') ? 1 : 0
             ];
@@ -65,7 +65,7 @@ class Address extends CI_Controller {
             // Simpan ke database
             if ($this->Address_model->insert($address_data)) {
                 $this->session->set_flashdata('success', 'Alamat berhasil ditambahkan');
-                redirect($this->input->post('from_checkout') ? 'checkout' : 'profile/addresses');
+                redirect($this->input->post('from_checkout') ? 'address' : 'checkout');
             } else {
                 $this->session->set_flashdata('error', 'Gagal menambahkan alamat');
                 $this->add();

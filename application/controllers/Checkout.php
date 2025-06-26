@@ -22,7 +22,7 @@ class Checkout extends CI_Controller {
         $data['addresses'] = $this->Address_model->get_by_user($user_id);
 
         $data['title'] = 'Checkout - BakulSayur';
-        $data['page'] = 'pages/frontend/checkout/checkout_view';
+        $data['page'] = 'pages/frontend/checkout/index';
         
         if (empty($data['cart_items'])) {
             $this->session->set_flashdata('warning', 'Keranjang belanja kosong');
@@ -54,33 +54,36 @@ class Checkout extends CI_Controller {
         }
         
         // Format alamat lengkap
-        $full_address = $address->address_line1;
-        if (!empty($address->address_line2)) {
-            $full_address .= ', ' . $address->address_line2;
+        $full_address = $address->address_line;
+        if (!empty($address->address_detail)) {
+            $full_address .= ', ' . $address->address_detail;
         }
         $full_address .= ', ' . $address->city . ', ' . $address->postal_code;
-        $full_address .= ', ' . $address->state . ', ' . $address->country;
         
+        $total = $this->Cart_model->get_cart_total($user_id);
         // Data order
         $order_data = [
             'id_user'   => $user_id,
             'date'      => date('Y-m-d H:i:s'),
             'invoice'   => 'INV-' . $user_id . '-' . time(),
-            'total'     => $this->Cart_model->get_cart_total($user_id),
+            'total'     => $total,
             'name'      => $this->input->post('name'),
             'address'   => $full_address, // Gunakan alamat lengkap
             'phone'     => $this->input->post('phone'),
-            'status'    => 'pending'
+            'status'    => ($total > 0) ? 'paid' : 'waiting'
         ];
         
         // Simpan order
         $this->load->model('Order_model');
         $order_id = $this->Order_model->create($order_data);
+        $this->session->set_userdata('last_invoice', $order_data['invoice']);
         
         if (!$order_id) {
             $this->session->set_flashdata('error', 'Gagal membuat order');
             return $this->index();
         }
+
+        $this->session->set_userdata('last_invoice', $order_data['invoice']);
         
         // Pindahkan cart ke order details
         $cart_items = $this->Cart_model->get_cart_items_for_checkout($user_id);

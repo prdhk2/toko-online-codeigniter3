@@ -3,8 +3,14 @@
         <div class="card-header bg-primary text-white">
             <h4 class="mb-0"><i class="fas fa-map-marker-alt"></i> Tambah Alamat Baru</h4>
         </div>
+<?php if (validation_errors() || $this->session->flashdata('error')): ?>
+    <div class="alert alert-danger m-3">
+        <?= validation_errors('<div>- ', '</div>') ?>
+        <?= $this->session->flashdata('error') ?>
+    </div>
+<?php endif; ?>
         <div class="card-body">
-            <form id="addressForm" action="<?= base_url('address/store') ?>" method="post">
+            <form id="addressForm" action="<?= base_url('Address/store') ?>" method="post">
                 <input type="hidden" name="from_checkout" value="<?= isset($from_checkout) ? 1 : 0 ?>">
                 
                 <!-- Informasi Penerima -->
@@ -45,13 +51,13 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Kota/Kabupaten <span class="text-danger">*</span></label>
-                            <select name="city_id" id="city" class="form-select" disabled required>
+                            <select name="city_id" id="city" class="form-select">
                                 <option value="">Pilih Kota</option>
                             </select>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Kecamatan <span class="text-danger">*</span></label>
-                            <select name="district_id" id="district" class="form-select" disabled required>
+                            <select name="district_id" id="district" class="form-select">
                                 <option value="">Pilih Kecamatan</option>
                             </select>
                         </div>
@@ -74,7 +80,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <a href="<?= isset($from_checkout) ? base_url('checkout') : base_url('profile/addresses') ?>" 
+                    <a href="<?= base_url('checkout');?>" 
                        class="btn btn-outline-secondary">
                         <i class="fas fa-arrow-left"></i> Kembali
                     </a>
