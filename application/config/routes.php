@@ -70,7 +70,7 @@ $route['address/store']     = 'address/store';
 
 $route['available_promo']             = 'home/promoIndex';
 
-// admin routes
+// admin product and category set
 $route['admin/dashboard']               = 'admin';
 $route['admin/product/add']             = 'product/add_product';
 $route['admin/product/index']           = 'product/index';
@@ -78,13 +78,31 @@ $route['product/store']                 = 'product/store';
 $route['admin/category/add']            = 'category/add_category';
 $route['admin/category/index']          = 'category/index';
 $route['category/store']                = 'category/store';
+
+// setiing
 $route['websetting/index']              = 'websetting/index';
+
+// New order
 $route['neworders/newOrders']           = 'orders/newOrders';
-$route['neworders/detail/(:num)']       = 'orders/detail/$1';
-$route['order/confirm/(:num)']          = 'orders/confirm/$1';
+$route['neworders/newOrders/(:num)']    = 'orders/newOrders/$1';
+
+// Paid Orders
 $route['neworders/paidOrders']          = 'orders/paidOrders';
+$route['neworders/paidOrders/(:num)']   = 'orders/paidOrders/$1';
+
+// Shipping Orders
 $route['neworders/shippingOrders']      = 'orders/shippingOrders';
+$route['neworders/shippingOrders/(:num)'] = 'orders/shippingOrders/$1';
+
+// Delivered Orders
 $route['neworders/deliveredOrders']     = 'orders/deliveredOrders';
+$route['neworders/deliveredOrders/(:num)'] = 'orders/deliveredOrders/$1';
+
+// Detail order
+$route['neworders/detail/(:num)']       = 'orders/detail/$1';
+
+// Print
+$route['orders/print/(:num)'] = 'orders/print_invoice/$1';
 
 // admin action routes 
 $route['product/detail/(:num)']         = 'product/detail/$1';
@@ -111,6 +129,8 @@ $route['admin/promo/edit/(:num)']       = 'promo/edit/$1';
 $route['admin/promo/update/(:num)']     = 'promo/update/$1';
 $route['admin/promo/delete/(:num)']     = 'promo/delete/$1';
 
+// admin report
+$route['admin/report'] = 'report/index';
 
 
 

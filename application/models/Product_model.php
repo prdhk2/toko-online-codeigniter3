@@ -107,6 +107,10 @@ class Product_model extends CI_Model
         return $this->db->delete('product', ['id' => $id]);
     }
 
+    public function count_all() {
+        return $this->db->count_all('product'); // atau 'products' sesuai nama tabel kamu
+    }
+
 }
 
 /* End of file Product_model.php */

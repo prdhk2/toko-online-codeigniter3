@@ -16,6 +16,7 @@ class Order extends MY_Controller
             redirect(base_url('/'));
             return;
         }
+        $this->load->model('Orders_model');
     }
 
     public function index($page = null) {

@@ -8,6 +8,7 @@ class Orders extends CI_Controller
         parent::__construct();
 
         $this->load->model('Orders_model', 'orders');
+        $this->load->library('pagination');
 
         $role = $this->session->userdata('role');
 
@@ -17,65 +18,159 @@ class Orders extends CI_Controller
         }
     }
 
-    public function newOrders() {
+    public function newOrders($offset = 0) {
+        $this->load->library('pagination');
         
-        $data['orders']     = $this->orders->getNewOrders();
-        $data['title'] = 'New Order';
-        $data['breadcum'] = 'Orders';
-
+        // Pagination config
+        $config['base_url'] = site_url('neworders/newOrders');
+        $config['total_rows'] = $this->orders->count_waiting_orders();
+        $config['per_page'] = 20; // Show 20 orders per page
+        $config['uri_segment'] = 3;
+        
+        // Pagination styling
+        $config['full_tag_open'] = '<ul class="pagination justify-content-center mb-0">';
+        $config['full_tag_close'] = '</ul>';
+        $config['first_link'] = 'First';
+        $config['last_link'] = 'Last';
+        $config['first_tag_open'] = '<li class="page-item">';
+        $config['first_tag_close'] = '</li>';
+        $config['prev_link'] = '&laquo;';
+        $config['prev_tag_open'] = '<li class="page-item">';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_link'] = '&raquo;';
+        $config['next_tag_open'] = '<li class="page-item">';
+        $config['next_tag_close'] = '</li>';
+        $config['last_tag_open'] = '<li class="page-item">';
+        $config['last_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="page-item active"><a class="page-link" href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['num_tag_open'] = '<li class="page-item">';
+        $config['num_tag_close'] = '</li>';
+        $config['attributes'] = array('class' => 'page-link');
+        
+        $this->pagination->initialize($config);
+        
+        $data['title'] = 'New Orders';
+        $data['breadcum'] = 'New Orders';
+        $data['orders'] = $this->orders->get_paginated_waiting_orders($config['per_page'], $offset);
+        $data['total_orders'] = $config['total_rows'];
+        $data['pagination'] = $this->pagination->create_links();
+        
         $this->load->view('layouts/admin/_header');
         $this->load->view('layouts/admin/_sidebar');
         $this->load->view('pages/admin/orders-management/new-order', $data);
         $this->load->view('layouts/admin/_footer');
     }
 
-    public function paidOrders() {
+    public function paidOrders($offset = 0) {
+        // Pagination config
+        $config['base_url'] = site_url('neworders/paidOrders');
+        $config['total_rows'] = $this->orders->count_paid_orders();
+        $config['per_page'] = 20;
+        $config['uri_segment'] = 3;
         
-        $data['orders']     = $this->orders->getPaidOrders();
-        $data['title'] = 'New Order';
-        $data['breadcum'] = 'Orders';
-
+        // Pagination styling
+        $config['full_tag_open'] = '<ul class="pagination justify-content-center mb-0">';
+        $config['full_tag_close'] = '</ul>';
+        $config['first_link'] = 'First';
+        $config['last_link'] = 'Last';
+        $config['first_tag_open'] = '<li class="page-item">';
+        $config['first_tag_close'] = '</li>';
+        $config['prev_link'] = '&laquo;';
+        $config['prev_tag_open'] = '<li class="page-item">';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_link'] = '&raquo;';
+        $config['next_tag_open'] = '<li class="page-item">';
+        $config['next_tag_close'] = '</li>';
+        $config['last_tag_open'] = '<li class="page-item">';
+        $config['last_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="page-item active"><a class="page-link" href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['num_tag_open'] = '<li class="page-item">';
+        $config['num_tag_close'] = '</li>';
+        $config['attributes'] = array('class' => 'page-link');
+        
+        $this->pagination->initialize($config);
+        
+        $data['title'] = 'Paid Orders';
+        $data['breadcum'] = 'Paid Orders';
+        $data['orders'] = $this->orders->get_paginated_paid_orders($config['per_page'], $offset);
+        $data['total_orders'] = $config['total_rows'];
+        $data['pagination'] = $this->pagination->create_links();
+        
         $this->load->view('layouts/admin/_header');
         $this->load->view('layouts/admin/_sidebar');
         $this->load->view('pages/admin/orders-management/paid-order', $data);
         $this->load->view('layouts/admin/_footer');
     }
 
-    public function shippingOrders() {
+    // Shipping Orders with Pagination
+    public function shippingOrders($offset = 0) {
+        // Pagination config
+        $config['base_url'] = site_url('neworders/shippingOrders');
+        $config['total_rows'] = $this->orders->count_shipping_orders();
+        $config['per_page'] = 20;
+        $config['uri_segment'] = 3;
         
-        $data['orders']     = $this->orders->getShippingOrders();
-        $data['title'] = 'New Order';
-        $data['breadcum'] = 'Orders';
-
+        // Same pagination styling as above
+        $config['full_tag_open'] = '<ul class="pagination justify-content-center mb-0">';
+        // ... [rest of pagination config from paidOrders]
+        
+        $this->pagination->initialize($config);
+        
+        $data['title'] = 'Shipping Orders';
+        $data['breadcum'] = 'Shipping Orders';
+        $data['orders'] = $this->orders->get_paginated_shipping_orders($config['per_page'], $offset);
+        $data['total_orders'] = $config['total_rows'];
+        $data['pagination'] = $this->pagination->create_links();
+        
         $this->load->view('layouts/admin/_header');
         $this->load->view('layouts/admin/_sidebar');
         $this->load->view('pages/admin/orders-management/shipping-order', $data);
         $this->load->view('layouts/admin/_footer');
     }
 
-    public function deliveredOrders() {
+    // Delivered Orders with Pagination
+    public function deliveredOrders($offset = 0) {
+        // Pagination config
+        $config['base_url'] = site_url('neworders/deliveredOrders');
+        $config['total_rows'] = $this->orders->count_delivered_orders();
+        $config['per_page'] = 20;
+        $config['uri_segment'] = 3;
         
-        $data['orders']     = $this->orders->getDeliveredOrders();
-        $data['title'] = 'New Order';
-        $data['breadcum'] = 'Orders';
-
+        // Same pagination styling as above
+        $config['full_tag_open'] = '<ul class="pagination justify-content-center mb-0">';
+        // ... [rest of pagination config from paidOrders]
+        
+        $this->pagination->initialize($config);
+        
+        $data['title'] = 'Delivered Orders';
+        $data['breadcum'] = 'Delivered Orders';
+        $data['orders'] = $this->orders->get_paginated_delivered_orders($config['per_page'], $offset);
+        $data['total_orders'] = $config['total_rows'];
+        $data['pagination'] = $this->pagination->create_links();
+        
         $this->load->view('layouts/admin/_header');
         $this->load->view('layouts/admin/_sidebar');
         $this->load->view('pages/admin/orders-management/delivered-order', $data);
         $this->load->view('layouts/admin/_footer');
     }
 
+
     public function detail($id) {
         $data['title'] = 'Detail Order';
         $data['breadcum'] = 'Orders';
         $data['order'] = $this->orders->getOrderById($id);
-        $data['order_items'] = $this->orders->getOrderItemsByOrderId($id);
-        $data['order_confirm'] = $this->orders->getOrderConfirmByOrderId($id);
-
+        
         if (!$data['order']) {
             $this->session->set_flashdata('error', 'Order not found.');
             redirect('neworders/newOrders');
         }
+        
+        $data['order_items'] = $this->orders->getOrderItemsByOrderId($id);
+        
+        // Remove order confirmation since using Midtrans
+        // $data['order_confirm'] = $this->orders->getOrderConfirmByOrderId($id);
 
         $this->load->view('layouts/admin/_header');
         $this->load->view('layouts/admin/_sidebar');
@@ -97,5 +192,16 @@ class Orders extends CI_Controller
         }
         redirect('neworders/newOrders');
     
+    }
+
+    public function print_invoice($id) {
+        $data['order'] = $this->orders->getOrderById($id);
+        $data['order_items'] = $this->orders->getOrderItemsByOrderId($id);
+        
+        if (!$data['order']) {
+            show_404();
+        }
+        
+        $this->load->view('pages/admin/orders-management/print_invoice', $data);
     }
 }

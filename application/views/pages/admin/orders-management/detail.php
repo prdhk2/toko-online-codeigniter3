@@ -20,105 +20,172 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card mb-3">
-                <div class="card-header">
-                    Detail Order
-                </div>
-                <div class="card-body">
-                    <h5>Order Information</h5>
-                    <table class="table table-bordered" id="order-details">
-                        <tr>
-                            <th style="text-align: start;">Invoice</th>
-                            <td><?= $order->invoice ?></td>
-                        </tr>
-                        <tr>
-                            <th style="text-align: start;">Order Date</th>
-                            <td><?= $order->date ?></td>
-                        </tr>
-                        <tr>
-                            <th style="text-align: start;">Total Amount</th>
-                            <td>Rp.<?= number_format($order->total, 0, ',', '.') ?>,-</td>
-                        </tr>
-                        <tr>
-                            <th style="text-align: start;">Customer Name</th>
-                            <td><?= $order->name ?></td>
-                        </tr>
-                        <tr>
-                            <th style="text-align: start;">Address</th>
-                            <td><?= $order->address ?></td>
-                        </tr>
-                        <tr>
-                            <th style="text-align: start;">Phone</th>
-                            <td><?= $order->phone ?></td>
-                        </tr>
-                    </table>
+    
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4" >
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Detail Order</h5>
+                    </div>
+                    <div class="card-body" id="print-area">
+                        <div class="mb-4">
+                            <h5 class="card-title text-primary">Order Information</h5>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                    <tr>
+                                        <th width="25%" class="text-start">Invoice</th>
+                                        <td><?= $order->invoice ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-start">Order Date</th>
+                                        <td><?= date('d M Y H:i', strtotime($order->date)) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-start">Payment Method</th>
+                                        <td>BCA Virtual Account</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-start">Total Amount</th>
+                                        <td>Rp <?= number_format($order->total, 0, ',', '.') ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-start">Customer Name</th>
+                                        <td><?= $order->name ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-start">Address</th>
+                                        <td><?= $order->address ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-start">Phone</th>
+                                        <td><?= $order->phone ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-start">Status</th>
+                                        <td>
+                                            <span class="badge bg-<?= 
+                                                ($order->status == 'paid') ? 'success' : 
+                                                (($order->status == 'waiting') ? 'warning' : 'primary') 
+                                            ?>">
+                                                <?= ucfirst($order->status) ?>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
 
-                    <h6>Order Items</h6>
-                    <table class="table table-bordered" id="order-items">
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th class="text-center">Price</th>
-                                <th class="text-center">Quantity</th>
-                                <th class="text-center">Subtotal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($order_items as $item) : ?>
-                                <tr>
-                                    <td><?= $item->product_title ?></td>
-                                    <td class="text-center">Rp.<?= number_format($item->price, 0, ',', '.') ?>,-</td>
-                                    <td class="text-center"><?= $item->qty ?></td>
-                                    <td class="text-center">Rp.<?= number_format($item->subtotal, 0, ',', '.') ?>,-</td>
-                                </tr>
-                            <?php endforeach ?>
-                            <tr>
-                                <td colspan="3"><strong>Total:</strong></td>
-                                <td class="text-center"><strong>Rp.<?= number_format($order->total, 0, ',', '.') ?>,-</strong></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <?php if ($order_confirm): ?>
-                        <h6>Order Confirmation</h6>
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Account Name</th>
-                                <td><?= $order_confirm->account_name ?></td>
-                            </tr>
-                            <tr>
-                                <th>Account Number</th>
-                                <td><?= $order_confirm->account_number ?></td>
-                            </tr>
-                            <tr>
-                                <th>Nominal</th>
-                                <td>Rp.<?= number_format($order_confirm->nominal, 0, ',', '.') ?>,-</td>
-                            </tr>
-                            <tr>
-                                <th>Note</th>
-                                <td><?= $order_confirm->note ?></td>
-                            </tr>
-                            <tr>
-                                <th>Transfer Proof</th>
-                                <td>
-                                    <img src="<?= base_url("images/confirm/{$order_confirm->image}") ?>" alt="Transfer Proof" class="img-thumbnail" width="300px">
-                                </td>
-                            </tr>
-                        </table>
-                        <?php if ($order->status == 'waiting'): ?>
-                            <a href="<?= base_url('order/confirm/' . $order->id) ?>" class="btn btn-success" onclick="return confirm('Are you sure you want to confirm this order?')">Confirm Order</a>
-                        <?php endif; ?>
-                    <?php else: ?>
-                        <p>No confirmation found for this order.</p>
-                    <?php endif; ?>
-                </div>
-                <div class="card-footer">
-                    <a href="<?= base_url('neworders/newOrders') ?>" class="btn btn-danger text-white"><i class="fas fa-angle-left"></i> Back to Orders</a>
-                    <button onclick="printOrderDetails()" class="btn btn-info"><i class="fas fa-print"></i> Print</button>
+                        <div class="mb-4">
+                            <h5 class="card-title text-primary">Order Items</h5>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            <th>Product</th>
+                                            <th class="text-center">Price</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-center">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php 
+                                        $calculated_total = 0;
+                                        foreach ($order_items as $item) : 
+                                            $correct_subtotal = $item->product_price * $item->qty;
+                                            $calculated_total += $correct_subtotal;
+                                        ?>
+                                            <tr>
+                                                <td><?= $item->product_title ?></td>
+                                                <td class="text-center">Rp <?= number_format($item->product_price, 0, ',', '.') ?></td>
+                                                <td class="text-center"><?= $item->qty ?></td>
+                                                <td class="text-center">Rp <?= number_format($correct_subtotal, 0, ',', '.') ?></td>
+                                            </tr>
+                                        <?php endforeach ?>
+                                        <tr class="table-active">
+                                            <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                                            <td class="text-center"><strong>Rp <?= number_format($calculated_total, 0, ',', '.') ?></strong></td>
+                                        </tr>
+                                        <?php if($calculated_total != $order->total): ?>
+                                        <tr class="table-warning">
+                                            <td colspan="4" class="text-center text-danger">
+                                                <i class="fas fa-exclamation-triangle"></i> Warning: Calculated total (Rp <?= number_format($calculated_total, 0, ',', '.') ?>) doesn't match order total (Rp <?= number_format($order->total, 0, ',', '.') ?>)
+                                            </td>
+                                        </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer text-center">
+                        <a href="<?= $_SERVER['HTTP_REFERER'] ?? base_url('neworders/newOrders') ?>" class="btn btn-secondary me-2">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </a>
+    
+                        
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</main>
+</div>
+
+<style>
+@media print {
+    body, html {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100%;
+        height: auto;
+    }
+
+    #print-area {
+        margin: 0 auto !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 800px; /* Batasi agar kontennya tetap proporsional di tengah */
+    }
+
+    .container-fluid, .row, .col-md-12 {
+        all: unset !important;
+        display: block;
+        width: 100% !important;
+    }
+
+    .card {
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    .card-body, .card-header {
+        padding: 0 !important;
+    }
+
+    .table {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .breadcrumb,
+    .card-footer,
+    .btn,
+    .page-breadcrumb {
+        display: none !important;
+    }
+
+    footer, header, nav, aside {
+        display: none !important;
+    }
+}
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('printBtn')?.addEventListener('click', function () {
+        window.print();
+    });
+});
+</script>

@@ -17,10 +17,17 @@ class Admin extends MY_Controller
     }
 
     public function index() {
-
-        $data['orders']     = $this->orders->getNewOrders();
+        $data['orders'] = $this->orders->getNewOrders();
         $data['title'] = 'Admin Dashboard';
         $data['breadcum'] = 'Dashboard';
+
+        // Tambahan data statistik
+        $this->load->model('Product_model', 'product');
+        $this->load->model('Report_model', 'report'); // pastikan model ini ada
+
+        $data['total_products']   = $this->product->count_all();            // jumlah total produk
+        $data['total_sales']      = $this->report->get_today_sales();       // penjualan hari ini
+        $data['monthly_revenue']  = $this->report->get_monthly_revenue();   // total revenue bulan ini
 
         $this->load->view('layouts/admin/_header');
         $this->load->view('layouts/admin/_sidebar');
@@ -28,7 +35,6 @@ class Admin extends MY_Controller
         $this->load->view('layouts/admin/_footer');
     }
 
-    
 }
 
 /* End of file Admin.php */
