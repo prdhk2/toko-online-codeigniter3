@@ -97,7 +97,7 @@
                                                 title="Print Invoice">
                                                 <i class="fas fa-print"></i>
                                             </a>
-                                            <a href="<?= base_url('orders/ship/' . $row->id); ?>" 
+                                            <a href="<?= base_url('neworders/markAsShipped/' . $row->id); ?>" 
                                                class="btn btn-sm btn-action btn-warning" 
                                                data-bs-toggle="tooltip" 
                                                title="Mark as Shipped"

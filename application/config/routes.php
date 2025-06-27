@@ -92,7 +92,7 @@ $route['neworders/paidOrders/(:num)']   = 'orders/paidOrders/$1';
 
 // Shipping Orders
 $route['neworders/shippingOrders']      = 'orders/shippingOrders';
-$route['neworders/shippingOrders/(:num)'] = 'orders/shippingOrders/$1';
+$route['neworders/markAsShipped/(:num)'] = 'orders/markAsShipped/$1';
 
 // Delivered Orders
 $route['neworders/deliveredOrders']     = 'orders/deliveredOrders';

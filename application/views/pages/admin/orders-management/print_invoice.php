@@ -233,7 +233,7 @@
             
             <div class="store-info">
                 <div class="store-logo">
-                    <img src="<?= base_url('assets/img/logo.png') ?>" alt="BakulSayur Logo">
+                    <img src="<?= base_url('assets/images/logo.png') ?>" alt="BakulSayur Logo">
                 </div>
                 <div class="store-details">
                     <div class="store-name">BakulSayur</div>
@@ -302,7 +302,7 @@
         
         <!-- Footer -->
         <div class="invoice-footer">
-            <p>Thank you for shopping with BakuliSavur</p>
+            <p>Thank you for shopping with BakulSayur</p>
             <p>Invoice generated on <?= date('d M Y H:i') ?></p>
         </div>
     </div>

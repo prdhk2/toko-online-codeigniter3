@@ -4,6 +4,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Orders_model extends MY_Model 
 {
+    public function createShipping($data) {
+        return $this->db->insert('shipping_temp', $data);
+    }
+
+    public function getById($id) {
+        return $this->db->get_where('orders', ['id' => $id])->row();
+    }
+
+    public function update($id, $data) {
+        return $this->db->where('id', $id)->update('orders', $data);
+    }
+    
     public function getNewOrders() {
         $this->db->where('status', 'waiting');
         $this->db->order_by('date', 'DESC');

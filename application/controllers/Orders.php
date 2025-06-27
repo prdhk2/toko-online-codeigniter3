@@ -18,6 +18,32 @@ class Orders extends CI_Controller
         }
     }
 
+    public function markAsShipped($order_id) {
+        // Cek apakah ordernya ada
+        $order = $this->orders->getById($order_id);
+        if (!$order) {
+            show_404();
+        }
+
+        // Data untuk shipping_temp
+        $data = [
+            'order_id' => $order_id,
+            'courier_name' => 'JNE', // bisa nanti pakai inputan atau default
+            'shipping_code' => 'SHIP-' . strtoupper(uniqid()),
+            'status' => 'processing'
+        ];
+
+        // Simpan ke shipping_temp
+        $this->orders->createShipping($data);
+
+        // Update status di orders (opsional, supaya reflect jadi "shipping")
+        $this->orders->update($order_id, ['status' => 'shipping']);
+
+        // Redirect kembali dengan pesan sukses
+        $this->session->set_flashdata('success', 'Order marked as shipped.');
+        redirect('neworders/shippingOrders');
+    }
+
     public function newOrders($offset = 0) {
         $this->load->library('pagination');
         

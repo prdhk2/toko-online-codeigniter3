@@ -7,7 +7,7 @@
         <!-- Sidebar header with user profile -->
         <div class="sidebar-header p-4 text-center">
             <div class="user-profile">
-                <img src="<?= base_url('assets/admin/images/users/profile.png') ?>" 
+                <img src="<?= base_url('assets/images/logo.png') ?>" 
                      class="rounded-circle shadow" 
                      width="80" 
                      alt="User">
@@ -175,6 +175,29 @@
 /* ==================== */
 /* Bold & Elegant Sidebar Styling */
 /* ==================== */
+/* Collapse sidebar behavior */
+body.sidebar-collapsed .left-sidebar {
+    width: 70px;
+    overflow: hidden;
+    transition: all 0.3s ease ;
+}
+
+body.sidebar-collapsed .sidebar-header,
+body.sidebar-collapsed .hide-menu,
+body.sidebar-collapsed .icon-box + span,
+body.sidebar-collapsed .first-level {
+    display: none !important;
+}
+
+body.sidebar-collapsed .icon-box {
+    margin: 0 auto;
+    display: block;
+}
+
+body.sidebar-collapsed .page-wrapper {
+    margin-left: 70px !important;
+}
+
 .left-sidebar {
     background: #ffffff;
     box-shadow: 5px 0 25px rgba(0, 0, 0, 0.08);

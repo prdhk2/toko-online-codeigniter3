@@ -64,7 +64,7 @@
                     </button>
                     <a class="navbar-brand" href="<?= base_url('admin/dashboard'); ?>">
                         <div class="d-flex align-items-center">
-                            <img src="<?= base_url('assets/img/logo.png') ?>" height="30" alt="Logo" class="me-2">
+                            <img src="<?= base_url('assets/images/logo.png') ?>" height="30" alt="Logo" class="me-2">
                             <span class="fw-bold text-primary">Administrator</span>
                         </div>
                     </a>
