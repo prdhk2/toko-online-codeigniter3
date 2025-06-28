@@ -18,7 +18,7 @@
 
 
 <!-- Notes -->
-Halo, ini adalah project personal saya untuk bahan presentasi dalam matakuliah web programming 2.... 
+Halo, ini adalah project personal saya untuk bahan presentasi dalam matakuliah web programming.... 
 Silahkan download atau bisa clone repo saya, FREE. 
 
 # Fitur :
